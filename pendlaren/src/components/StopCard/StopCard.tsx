@@ -11,20 +11,22 @@ interface StopCardProps {
 function StopCard({ nameOfStop, extId, distanceFromLocation }: StopCardProps) {
   // TODO: FIXA INTERFACE!
   const [departuresArray, setDeparturesArray] = useState<any>([]);
-
-  const API_KEY = "73f1d3b1-8698-4efb-94d9-f2fb1704bf06";
+  const [slicedArray, setSlicedArray] = useState<any>([]);
 
   async function getPoleTimeTables(extId: string) {
     console.log(extId);
-    console.log(API_KEY);
+    // console.log(API_KEY);
 
-    const URL = `https://api.resrobot.se/v2.1/departureBoard?id=${extId}&format=json&accessId=${API_KEY}`;
+    const URL = `https://api.resrobot.se/v2.1/departureBoard?id=${extId}&format=json&accessId=${
+      import.meta.env.VITE_API_KEY
+    }`;
     const response = await fetch(URL);
 
     const data = await response.json();
     setDeparturesArray(data.Departure);
+    setSlicedArray(data.Departure.slice(0, 5));
 
-    console.log(data.Departure);
+    // console.log(data.Departure);
   }
 
   return (
@@ -36,9 +38,9 @@ function StopCard({ nameOfStop, extId, distanceFromLocation }: StopCardProps) {
         {nameOfStop}
       </h1>
       <p>{distanceFromLocation}m från location</p>
-      {departuresArray ? (
+      {slicedArray ? (
         <ul>
-          {departuresArray.map((departure: destinationData) => (
+          {slicedArray.map((departure: destinationData) => (
             <li key={departure.stopid}>
               {departure.direction}
               {departure.time}

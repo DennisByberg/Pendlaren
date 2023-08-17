@@ -6,7 +6,6 @@ function App() {
     <div className="App">
       <header className="App__header"> Pendlaren </header>
       <Stops />
-      <p>hej</p>
     </div>
   );
 }
