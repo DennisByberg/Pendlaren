@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import "./Stops.scss";
 // Components.
 import StopCard from "../StopCard/StopCard";
+// Types & Interfaces
+import { LatitudeData } from "../../types";
+import { StopLocationData } from "../../interfaces";
 
 function Stops() {
-  const API_KEY: string = "73f1d3b1-8698-4efb-94d9-f2fb1704bf06"; // API KEY!
-
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longitude, setLongitude] = useState<number>(0);
+  const [latitude, setLatitude] = useState<LatitudeData>(0);
+  const [longitude, setLongitude] = useState<LatitudeData>(0);
 
   const [stopsComponent, setStopsComponent] = useState<JSX.Element[]>([]);
 
@@ -30,7 +31,9 @@ function Stops() {
 
   // 2. Gör ett API-anrop mot ReseRobot - reseplanerare med longitud och latitud.
   async function getStops() {
-    const URL: string = `https://api.resrobot.se/v2.1/location.nearbystops?originCoordLat=${latitude}&originCoordLong=${longitude}&format=json&accessId=${API_KEY}`;
+    const URL: string = `https://api.resrobot.se/v2.1/location.nearbystops?originCoordLat=${latitude}&originCoordLong=${longitude}&format=json&accessId=${
+      import.meta.env.VITE_API_KEY
+    }`;
     const response = await fetch(URL);
     const data = await response.json();
 
@@ -38,10 +41,7 @@ function Stops() {
     // console.log(stopsArray);
 
     // TODO... Fixa interface så vi slipper skriva any...
-    const stops = stopsArray.map((stop: any) => {
-      // console.log(stop.StopLocation.name);
-      // console.log(stop.StopLocation.extId);
-      // console.log(stop.StopLocation.dist);
+    const stops = stopsArray.map((stop: StopLocationData) => {
       return (
         <StopCard
           key={stop.StopLocation.extId}
