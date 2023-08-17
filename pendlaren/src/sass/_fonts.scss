@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+// font-family: 'PT Sans', sans-serif;
+@mixin fontFamilyPTSans {
+  font-family: "PT Sans", sans-serif;
+}
+
+// No import...
+// font-family: Helvetica, sans-serif;
+@mixin fontFamilyHelvetica {
+  font-family: Helvetica, sans-serif;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise&display=swap");
+// font-family: 'Waiting for the Sunrise', cursive;
+@mixin fontFamilyWaitingForTheSunrise {
+  font-family: "Waiting for the Sunrise", cursive;
+}
