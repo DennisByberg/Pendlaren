@@ -63,7 +63,7 @@ function Stops() {
   return (
     <section className="stops">
       <button className="stops__find-stops-btn" onClick={getPosition}>
-        Find Stops
+        Hitta din nästa resa
       </button>
       <ul>{stopsComponent}</ul>
     </section>

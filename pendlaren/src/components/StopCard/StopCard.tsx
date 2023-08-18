@@ -25,13 +25,15 @@ function StopCard({ nameOfStop, extId, distanceFromLocation }: StopCardProps) {
       >
         {nameOfStop}
       </h1>
-      <p>{distanceFromLocation}m från location</p>
+      <p className="stop-card__distance-from-stop">{distanceFromLocation}m Från hållplats</p> 
       {slicedArray ? (
-        <ul>
+        <ul className="stop-card__list-of-stops">
           {slicedArray.map((departure: DestinationData) => (
-            <li key={departure.stopid}>
+            <li key={departure.stopid} className="stop-card__stop-info">
               {departure.direction}
+              <br />
               {departure.time}
+              <br />
               {departure.name}
             </li>
           ))}
